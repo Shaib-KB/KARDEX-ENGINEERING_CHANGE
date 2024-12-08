@@ -115,3 +115,27 @@ button:hover {
     background-color: #4CAF50;
     color: white;
 }
+/* Default light theme styles are already present */
+
+/* Dark Theme Styles */
+.form-container.dark-theme {
+    background-color: #2c2c2c;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+
+.form-container.dark-theme input,
+.form-container.dark-theme textarea {
+    background-color: #444;
+    color: #f1f1f1;
+    border: 1px solid #666;
+}
+
+.form-container.dark-theme button {
+    background-color: #555;
+    color: #fff;
+}
+
+.form-container.dark-theme button:hover {
+    background-color: #777;
+}

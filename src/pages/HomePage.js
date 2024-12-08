@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '/home/kwanele/spiced-bootcamp/kardex-engineering_change/src/CSS/HomePage.css';  // Import the CSS file for styling
+import '/home/kwanele/spiced-bootcamp/kardex-engineering_change/src/CSS/HomePage.css';
 
 function HomePage() {
   const [formData, setFormData] = useState({
@@ -12,6 +12,8 @@ function HomePage() {
     description: '',
     picture: null,
   });
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false); // State to manage theme
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,13 +37,22 @@ function HomePage() {
     navigate('/search');
   };
 
+  const toggleTheme = () => {
+    setIsDarkTheme((prev) => !prev);
+  };
+
   return (
-    <div className="form-container">
+    <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
       <form id="ec-verification-form" onSubmit={handleSubmit}>
         <div className="form-header">
-          <h1>EC/Verification Form</h1>
-          <div className="logo">
-            <img src="/home/kwanele/spiced-bootcamp/kardex-engineering_change/public/Logo.jpg" alt="User Image" />
+          <h1>Verification Form</h1>
+          <div className="logo img">
+            <img
+              src="/home/kwanele/spiced-bootcamp/kardex-engineering_change/public/Logo.jpg"
+              alt="User Image"
+              width="250px"
+              height="auto"
+            />
           </div>
         </div>
 
@@ -119,6 +130,18 @@ function HomePage() {
             Upload Pic
           </button>
           <button type="submit">Submit</button>
+        </div>
+
+        {/* Toggle Theme Button */}
+        <div className="theme-toggle">
+          <label className="toggle-label">
+            <input
+              type="checkbox"
+              checked={isDarkTheme}
+              onChange={toggleTheme}
+            />
+            Toggle Dark Theme
+          </label>
         </div>
       </form>
     </div>
