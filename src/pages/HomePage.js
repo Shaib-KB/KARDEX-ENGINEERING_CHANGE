@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '/home/kwanele/spiced-bootcamp/kardex-engineering_change/src/CSS/HomePage.css';
+import './HomePage.css';
+
 
 function HomePage() {
   const [formData, setFormData] = useState({
@@ -49,9 +50,7 @@ function HomePage() {
           <div className="logo img">
             <img
               src="/home/kwanele/spiced-bootcamp/kardex-engineering_change/public/Logo.jpg"
-              alt="User Image"
-              width="250px"
-              height="auto"
+              alt="MBSA Logo"
             />
           </div>
         </div>
