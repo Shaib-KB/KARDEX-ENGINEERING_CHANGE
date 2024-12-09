@@ -3,7 +3,7 @@
 /* General styles, including body and form */
 body {
     font-family: Arial, sans-serif;
-    background: url('/home/kwanele/spiced-bootcamp/kardex-engineering_change/public/background.jpeg') no-repeat center center fixed;
+    background: url('./background.jpeg') no-repeat center center fixed; 
     background-size: cover;
     display: flex;
     justify-content: center;

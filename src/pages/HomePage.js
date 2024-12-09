@@ -49,7 +49,7 @@ function HomePage() {
           <h1>Verification Form</h1>
           <div className="logo img">
             <img
-              src="/home/kwanele/spiced-bootcamp/kardex-engineering_change/public/Logo.jpg"
+              src='./Logo.jpg'
               alt="MBSA Logo"
             />
           </div>
