@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-
+import Logo from '../pages/Logo.jpg';
 
 function HomePage() {
   const [formData, setFormData] = useState({
@@ -14,7 +14,8 @@ function HomePage() {
     picture: null,
   });
 
-  const [isDarkTheme, setIsDarkTheme] = useState(false); // State to manage theme
+  const [submittedItems, setSubmittedItems] = useState([]);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,6 +36,8 @@ function HomePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
+    setSubmittedItems((prev) => [...prev, formData.newPart]);
+    setFormData({ ...formData, newPart: '' });
     navigate('/search');
   };
 
@@ -45,15 +48,29 @@ function HomePage() {
   return (
     <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
       <form id="ec-verification-form" onSubmit={handleSubmit}>
+        {/* User Avatar in Top-Right Corner */}
+        <div className="user-avatar-inside-form">
+          <img src={Logo} alt="User" />
+        </div>
+
         <div className="form-header">
           <h1>Verification Form</h1>
-          <div className="logo img">
-            <img
-              src='./Logo.jpg'
-              alt="MBSA Logo"
-            />
+        </div>
+
+        <div className="label-field-container">
+          <label htmlFor="no-of-items">No of items:</label>
+          <div id="no-of-items" className="display-field">
+            {submittedItems.length || 0}
           </div>
         </div>
+
+        {submittedItems.length > 0 && (
+          <ul>
+            {submittedItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
 
         <label htmlFor="new-part">New Part no:</label>
         <input
@@ -75,26 +92,6 @@ function HomePage() {
           required
         />
 
-        <label htmlFor="line">Line:</label>
-        <input
-          type="text"
-          id="line"
-          name="line"
-          value={formData.line}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="stn">STN:</label>
-        <input
-          type="text"
-          id="stn"
-          name="stn"
-          value={formData.stn}
-          onChange={handleChange}
-          required
-        />
-
         <label htmlFor="unit-number">Unit number:</label>
         <input
           type="text"
@@ -105,24 +102,18 @@ function HomePage() {
           required
         />
 
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="4"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
+       
+      <label htmlFor="description">Description:</label>
+      <div className="grouped-static-fields">
+         {/* Static Description Field */}
+       <span>- {formData.newPart }</span>
+      <br />
+      <span>- {formData.oldPart }</span>
+      <br />
+      <span>- {formData.unitNumber }</span>
+      </div>
 
-        <label htmlFor="picture">New Picture: (Optional)</label>
-        <input
-          type="file"
-          id="picture"
-          name="picture"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
+      <br />
 
         <div className="form-buttons">
           <button type="button" id="upload-btn">
@@ -131,7 +122,6 @@ function HomePage() {
           <button type="submit">Submit</button>
         </div>
 
-        {/* Toggle Theme Button */}
         <div className="theme-toggle">
           <label className="toggle-label">
             <input
@@ -142,6 +132,7 @@ function HomePage() {
             Toggle Dark Theme
           </label>
         </div>
+        
       </form>
     </div>
   );
