@@ -99,8 +99,8 @@ h1 {
 }
 
 .logo img {
-    width: 60px;  /* Adjust size to fit nicely */
-    height: 60px;
+    width: 160px;  /* Adjust size to fit nicely */
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
 }

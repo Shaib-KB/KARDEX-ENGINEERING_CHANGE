@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import Logo from '../pages/Logo.jpg';
+import Logo from '../pages/Logo.jpg'; // Default logo or avatar
 
 function HomePage() {
   const [formData, setFormData] = useState({
@@ -55,13 +55,13 @@ function HomePage() {
   return (
     <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
       <form id="ec-verification-form" onSubmit={handleSubmit}>
-        {/* User Avatar in Top-Right Corner */}
-        <div className="user-avatar-inside-form">
-          <img src={Logo} alt="User" />
-        </div>
-
         <div className="form-header">
           <h1>Verification Form</h1>
+        </div>
+
+        {/* User Avatar in the form */}
+        <div className="user-avatar-inside-form">
+          <img src={imageUrl || Logo} alt="User Avatar" />
         </div>
 
         <div className="label-field-container">
@@ -117,8 +117,6 @@ function HomePage() {
           <br />
           <span>- {formData.unitNumber}</span>
         </div>
-
-        <br />
 
         {/* Picture Upload Section */}
         <div className="picture-upload">
