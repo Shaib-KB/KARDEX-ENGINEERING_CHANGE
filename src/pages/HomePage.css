@@ -259,4 +259,24 @@ button:hover {
     font-weight: bold; /* Bold text */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
   }
+  .resizable-image {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: move;
+  }
+  
+  .image-preview {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .filter-controls {
+    margin-top: 10px;
+  }
+  
+  .filter-controls label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
   

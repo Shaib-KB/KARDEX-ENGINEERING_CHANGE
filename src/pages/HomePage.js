@@ -16,6 +16,9 @@ function HomePage() {
 
   const [submittedItems, setSubmittedItems] = useState([]);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [filter, setFilter] = useState('none');
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -27,10 +30,14 @@ function HomePage() {
   };
 
   const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      picture: e.target.files[0],
-    }));
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        picture: file,
+      }));
+      setImageUrl(URL.createObjectURL(file));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -102,23 +109,60 @@ function HomePage() {
           required
         />
 
-       
-      <label htmlFor="description">Description:</label>
-      <div className="grouped-static-fields">
-         {/* Static Description Field */}
-       <span>- {formData.newPart }</span>
-      <br />
-      <span>- {formData.oldPart }</span>
-      <br />
-      <span>- {formData.unitNumber }</span>
-      </div>
+        <label htmlFor="description">Description:</label>
+        <div className="grouped-static-fields">
+          <span>- {formData.newPart}</span>
+          <br />
+          <span>- {formData.oldPart}</span>
+          <br />
+          <span>- {formData.unitNumber}</span>
+        </div>
 
-      <br />
+        <br />
+
+        {/* Picture Upload Section */}
+        <div className="picture-upload">
+          <label htmlFor="picture">Picture of Product:</label>
+          <input
+            type="file"
+            id="picture"
+            name="picture"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          {imageUrl && (
+            <div className="image-preview">
+              <img
+                src={imageUrl}
+                alt="Uploaded"
+                className="resizable-image"
+                style={{
+                  filter: filter,
+                  maxWidth: '100%',
+                  maxHeight: '300px',
+                  resize: 'both',
+                  overflow: 'auto',
+                }}
+                draggable="true"
+              />
+              <div className="filter-controls">
+                <label>Apply Filter:</label>
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                >
+                  <option value="none">None</option>
+                  <option value="grayscale(100%)">Grayscale</option>
+                  <option value="sepia(80%)">Sepia</option>
+                  <option value="brightness(120%)">Brightness</option>
+                  <option value="contrast(150%)">Contrast</option>
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="form-buttons">
-          <button type="button" id="upload-btn">
-            Upload Pic
-          </button>
           <button type="submit">Submit</button>
         </div>
 
@@ -132,7 +176,6 @@ function HomePage() {
             Toggle Dark Theme
           </label>
         </div>
-        
       </form>
     </div>
   );
