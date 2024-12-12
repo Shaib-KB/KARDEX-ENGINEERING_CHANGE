@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import Logo from '../pages/Logo.jpg'; // Default logo or avatar
+import Logo from '../pages/Logo.jpg';
 
 function HomePage() {
   const [formData, setFormData] = useState({
@@ -18,9 +18,11 @@ function HomePage() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [filter, setFilter] = useState('none');
+  const [widgets, setWidgets] = useState([]);
 
   const navigate = useNavigate();
 
+  // Form Handlers
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -44,7 +46,15 @@ function HomePage() {
     e.preventDefault();
     localStorage.setItem('formData', JSON.stringify(formData));
     setSubmittedItems((prev) => [...prev, formData.newPart]);
-    setFormData({ ...formData, newPart: '' });
+    setFormData({
+      newPart: '',
+      oldPart: '',
+      line: '',
+      stn: '',
+      unitNumber: '',
+      description: '',
+      picture: null,
+    });
     navigate('/search');
   };
 
@@ -52,14 +62,29 @@ function HomePage() {
     setIsDarkTheme((prev) => !prev);
   };
 
+  // Drag-and-Drop Handlers
+  const handleOnDrag = (e, widgetType) => {
+    e.dataTransfer.setData('widgetType', widgetType);
+  };
+
+  const handleOnDrop = (e) => {
+    e.preventDefault();
+    const widgetType = e.dataTransfer.getData('widgetType');
+    setWidgets((prevWidgets) => [...prevWidgets, widgetType]);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
+       
       <form id="ec-verification-form" onSubmit={handleSubmit}>
         <div className="form-header">
           <h1>Engineering Change Verification Form</h1>
         </div>
 
-        {/* User Avatar in the form */}
         <div className="user-avatar-inside-form">
           <img src={Logo} alt="User Avatar" />
         </div>
@@ -67,7 +92,7 @@ function HomePage() {
         <div className="label-field-container">
           <label htmlFor="no-of-items">No of items:</label>
           <div id="no-of-items" className="display-field">
-            {submittedItems.length || 0}
+            {submittedItems.length}
           </div>
         </div>
 
@@ -79,7 +104,7 @@ function HomePage() {
           </ul>
         )}
 
-        <label htmlFor="new-part">New Part no:</label>
+        <label htmlFor="new-part">New Part no & Unit no:</label>
         <input
           type="text"
           id="new-part"
@@ -89,17 +114,7 @@ function HomePage() {
           required
         />
 
-        <label htmlFor="old-part">Old Part no:</label>
-        <input
-          type="text"
-          id="old-part"
-          name="oldPart"
-          value={formData.oldPart}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="unit-number">Unit number:</label>
+               {/* <label htmlFor="unit-number">Unit number:</label>
         <input
           type="text"
           id="unit-number"
@@ -107,18 +122,71 @@ function HomePage() {
           value={formData.unitNumber}
           onChange={handleChange}
           required
-        />
+        /> */}
 
         <label htmlFor="description">Description:</label>
         <div className="grouped-static-fields">
           <span>- {formData.newPart}</span>
           <br />
-          <span>- {formData.oldPart}</span>
-          <br />
-          <span>- {formData.unitNumber}</span>
+         
+          {/* <span>- {formData.unitNumber}</span> */}
         </div>
 
-        {/* Picture Upload Section */}
+        {/* Drag-and-Drop Section */}
+        <div className="widgets">
+          <label>Car Model</label>
+          <div className='widget-name'>
+          <div
+            className="widget"
+            draggable
+            onDragStart={(e) => handleOnDrag(e, 'AMG C63')}
+        
+          >
+            AMG C63
+          </div>
+          <div
+            className="widget"
+            draggable
+            onDragStart={(e) => handleOnDrag(e, 'AMG C43')}
+          >
+            AMG C43
+          </div>
+          
+          </div>
+          <div className='pageWidget'>
+
+          
+          <div
+            className="page"
+            onDrop={handleOnDrop}
+            onDragOver={handleDragOver}
+            style={{
+              border: '2px dashed gray',
+              minHeight: '5px',
+              padding: '10px',
+            }}
+          >
+            {widgets.length === 0 ? (
+              <p>Drag and drop a car model here!</p>
+            ) : (
+              widgets.map((widget, index) => (
+                <div className="dropped-widget" key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ marginRight: '10px' }}>{widget}</span>
+                  <button
+                    style={{ padding: '5px', cursor: 'pointer' }}
+                    onClick={() => {
+                      setWidgets((prevWidgets) => prevWidgets.filter((_, i) => i !== index));
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+          </div>
+        </div>
+
         <div className="picture-upload">
           <label htmlFor="picture">Picture of Product:</label>
           <input
@@ -141,7 +209,6 @@ function HomePage() {
                   resize: 'both',
                   overflow: 'auto',
                 }}
-                draggable="true"
               />
               <div className="filter-controls">
                 <label>Apply Filter:</label>

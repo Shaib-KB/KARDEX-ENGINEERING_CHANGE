@@ -1,5 +1,5 @@
 import './NavBar.css';
-
+import './HomePage.css';
 
 
 
@@ -21,6 +21,7 @@ import './NavBar.css';
 import React, { useState } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
+import Logo from '../pages/Logo.jpg';
 
 function NavBar() {
 
@@ -33,6 +34,8 @@ function NavBar() {
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
       
           <Link to="/search" className={location.pathname === '/search' ? 'active' : ''}>Search</Link>
+
+        
         
 
     </div>
