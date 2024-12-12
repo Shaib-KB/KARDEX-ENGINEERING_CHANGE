@@ -80,54 +80,32 @@ function SearchPage() {
         )}
 
         <label htmlFor="new-part">New Part no:</label>
-        <input
-          type="text"
-          id="new-part"
-          name="newPart"
-          value={formData.newPart}
-          onChange={handleChange}
-          required
-        />
+        <div id="new-part-no" className="display-field">
+           
+        </div>
 
         <label htmlFor="old-part">Old Part no:</label>
-        <input
-          type="text"
-          id="old-part"
-          name="oldPart"
-          value={formData.oldPart}
-          onChange={handleChange}
-          required
-        />
+        <div id="Old-Part-no" className="display-field">
+           
+        </div>
 
         <label htmlFor="unit-number">Unit number:</label>
-        <input
-          type="text"
-          id="unit-number"
-          name="unitNumber"
-          value={formData.unitNumber}
-          onChange={handleChange}
-          required
-        />
+        <div id="unit-number" className="display-field">
+           
+        </div>
 
         <label htmlFor="description">Description:</label>
-        <div className="grouped-static-fields">
-          <span>- {formData.newPart}</span>
-          <br />
-          <span>- {formData.oldPart}</span>
-          <br />
-          <span>- {formData.unitNumber}</span>
+        <div id="description" className="display-field">
+           
         </div>
 
         {/* Picture Upload Section */}
         <div className="picture-upload">
           <label htmlFor="picture">Picture of Product:</label>
-          <input
-            type="file"
-            id="picture"
-            name="picture"
-            accept="image/*"
-            onChange={handleFileChange}
-          />
+          <div id="picture" className="display-field">
+           
+           </div>
+           <br></br>
           {imageUrl && (
             <div className="image-preview">
               <img
@@ -159,9 +137,29 @@ function SearchPage() {
             </div>
           )}
         </div>
+           
+       
+        <div>
+          
+          <input
+          type="text"
+          id="search-unit-no"
+          name="searchUnitNo"
+          value={formData.searchPartNo}
+          onChange={handleChange}
+          required
+           placeholder='search unit number'
+  
+        />
+        </div>
 
         <div className="form-buttons">
           <button type="Search">Search</button>
+        </div>
+        <br></br> 
+
+        <div className="form-buttons">
+          <button type="Search">Confirm</button>
         </div>
 
         <div className="theme-toggle">
@@ -170,6 +168,7 @@ function SearchPage() {
               type="checkbox"
               checked={isDarkTheme}
               onChange={toggleTheme}
+             
             />
             Toggle Dark Theme
           </label>
