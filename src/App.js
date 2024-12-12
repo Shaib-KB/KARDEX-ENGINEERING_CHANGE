@@ -3,10 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import './App.css';
+import NavBar from './pages/NavBar';
+
+
 
 function App() {
   return (
     <Router>
+      <NavBar/>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

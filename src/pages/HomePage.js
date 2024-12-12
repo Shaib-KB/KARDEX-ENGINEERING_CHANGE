@@ -61,7 +61,7 @@ function HomePage() {
 
         {/* User Avatar in the form */}
         <div className="user-avatar-inside-form">
-          <img src={imageUrl || Logo} alt="User Avatar" />
+          <img src={Logo} alt="User Avatar" />
         </div>
 
         <div className="label-field-container">
