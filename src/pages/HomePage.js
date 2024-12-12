@@ -56,7 +56,7 @@ function HomePage() {
     <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
       <form id="ec-verification-form" onSubmit={handleSubmit}>
         <div className="form-header">
-          <h1>Verification Form</h1>
+          <h1>Engineering Change Verification Form</h1>
         </div>
 
         {/* User Avatar in the form */}
