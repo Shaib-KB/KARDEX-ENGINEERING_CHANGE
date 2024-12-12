@@ -21,6 +21,7 @@ function NavBar() {
 
          {/* User Avatar in the form */}
         <div className="user-avatar-inside-form">
+          <label >User-image</label>
           <img src={Logo} alt="User Avatar" />
         </div>
 

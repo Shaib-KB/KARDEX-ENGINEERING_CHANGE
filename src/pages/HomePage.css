@@ -44,6 +44,7 @@ h1 {
   
   .label-field-container {
     margin: 10px 0;
+  
   }
   
   .display-field {
@@ -61,6 +62,8 @@ h1 {
     background-color: #f1f1f1;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    resize:both;
+    overflow-y: auto;
   }
   
   /* Right page area */
@@ -92,8 +95,14 @@ h1 {
   
   .picture-upload {
     margin: 10px 0;
+   
   }
-  
+  .picture-upload {
+    margin: 10px 0;
+    resize:both;
+    overflow-y: auto;
+
+  }
   .image-preview {
     margin-top: 10px;
   }

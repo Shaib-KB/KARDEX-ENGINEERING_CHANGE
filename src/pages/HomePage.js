@@ -80,7 +80,7 @@ function HomePage() {
   return (
     <div className={`form-container ${isDarkTheme ? 'dark-theme' : ''}`}>
        
-      <form id="ec-verification-form" onSubmit={handleSubmit}>
+      <form id="ec-verification-form" onSubmit={handleSubmit} className="form-name">
         <div className="form-header">
           <h1>Engineering Change Verification Form</h1>
         </div>
@@ -196,6 +196,7 @@ function HomePage() {
             name="picture"
             accept="image/*"
             onChange={handleFileChange}
+            
           />
           {imageUrl && (
             <div className="image-preview">
@@ -230,6 +231,7 @@ function HomePage() {
 
         <div className="form-buttons">
           <button type="submit">Submit</button>
+          <button type="submit">Confirm</button>
         </div>
 
         <div className="theme-toggle">
