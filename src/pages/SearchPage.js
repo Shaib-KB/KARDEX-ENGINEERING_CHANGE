@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchPage.css';
-import Logo from '../pages/Logo.jpg'; // Default logo or avatar
+
 
 function SearchPage() {
   const [formData, setFormData] = useState({

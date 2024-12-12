@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import Logo from '../pages/Logo.jpg';
+
 
 function HomePage() {
   const [formData, setFormData] = useState({
