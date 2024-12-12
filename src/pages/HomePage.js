@@ -85,10 +85,11 @@ function HomePage() {
           <h1>Engineering Change Verification Form</h1>
         </div>
 
-        <div className="user-avatar-inside-form">
+        {/* <div className="user-avatar-inside-form">
           <img src={Logo} alt="User Avatar" />
-        </div>
+          </div> */}
 
+       
         <div className="label-field-container">
           <label htmlFor="no-of-items">No of items:</label>
           <div id="no-of-items" className="display-field">

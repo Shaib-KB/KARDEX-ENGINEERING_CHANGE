@@ -19,10 +19,10 @@ h1 {
     font-size: 20px;
     margin: 0;
 }
-  .user-avatar-inside-form {
+.user-avatar-inside-form {
     position: absolute; /* Position relative to form */
-    top: 150px; /* Adjust the top position to overlap slightly above the form */
-    right: 1700px; /* Right-align inside the form */
+    top: 170px; /* Adjust the top position to overlap slightly above the form */
+    right: 1020px; /* Right-align inside the form */
     display: flex;
     align-items: center;
     gap: 10px; /* Space between the image and text */
@@ -35,7 +35,7 @@ h1 {
     object-fit: cover;
 
     
-}
+} 
   .user-avatar-inside-form img {
     width: 100px;
     height: 100px;

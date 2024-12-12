@@ -59,10 +59,10 @@ function SearchPage() {
           <h1>Engineering Change Verification Form</h1>
         </div>
 
-        {/* User Avatar in the form */}
+        {/* User Avatar in the form
         <div className="user-avatar-inside-form">
           <img src={Logo} alt="User Avatar" />
-        </div>
+        </div> */}
 
         <div className="label-field-container">
           <label htmlFor="no-of-items">No of items:</label>

@@ -1,27 +1,11 @@
-import './NavBar.css';
-import './HomePage.css';
 
-
-
-// function NavBar() {
-//     return (
-//       <div className='navbar'>
-//             <a href="/" className="active" >Home</a>
-          
-//             <a href="/search" className="acti" >Search</a>
-        
-
-//       </div>
-//     );
-//   }
-
-//   export default NavBar;
 
 import './NavBar.css';
 import React, { useState } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../pages/Logo.jpg';
+
 
 function NavBar() {
 
@@ -35,8 +19,10 @@ function NavBar() {
       
           <Link to="/search" className={location.pathname === '/search' ? 'active' : ''}>Search</Link>
 
-        
-        
+         {/* User Avatar in the form */}
+        <div className="user-avatar-inside-form">
+          <img src={Logo} alt="User Avatar" />
+        </div>
 
     </div>
   );

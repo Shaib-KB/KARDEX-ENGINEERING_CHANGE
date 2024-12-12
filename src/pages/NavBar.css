@@ -6,11 +6,12 @@
 
 .navbar {
     width: 100%;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0); /* rgba for 50% transparency */
     overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
+    height: 100px; /* Increased height to accommodate the avatar */
 }
 
 
